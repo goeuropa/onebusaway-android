@@ -109,9 +109,13 @@ public class DirectionExpandableListAdapter extends BaseExpandableListAdapter {
         CharSequence text = subDirection == null ? "null here" : subDirection.getDirectionText();
         holder.txtDirection.setText(text);
 
+        // Ensure sub-direction text color is set for dark mode consistency
+        holder.txtDirection.setTextColor(ContextCompat.getColor(mContext, R.color.body_text_1));
+
         if (subDirection.getIcon() != -1) {
             holder.imgIcon.setImageResource(subDirection.getIcon());
-            holder.imgIcon.setColorFilter(Color.GRAY);
+            // Use body_text_2 color for icons to ensure visibility in both light and dark mode
+            holder.imgIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.body_text_2));
         }
         else {
             holder.imgIcon.setVisibility(View.INVISIBLE);
@@ -155,15 +159,19 @@ public class DirectionExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         Direction dir = mData[groupPosition];
-        int textColor = mContext.getResources().getColor(R.color.body_text_1);
+        int textColor = ContextCompat.getColor(mContext, R.color.body_text_1);
+        int iconColor = ContextCompat.getColor(mContext, R.color.body_text_2);
         holder.txtDirection.setTextColor(textColor);
+        if (holder.noIconText != null) {
+            holder.noIconText.setTextColor(textColor);
+        }
 
         if (!dir.isTransit()) {
             holder.txtDirection.setText(dir.getDirectionIndex() + ". " + dir.getDirectionText());
             holder.imgIcon.setVisibility(View.VISIBLE);
             if (dir.getIcon() != -1) {
                 holder.imgIcon.setImageResource(dir.getIcon());
-                holder.imgIcon.setColorFilter(Color.GRAY);
+                holder.imgIcon.setColorFilter(iconColor);
             }
             else {
                 holder.imgIcon.setVisibility(View.INVISIBLE);
@@ -197,7 +205,7 @@ public class DirectionExpandableListAdapter extends BaseExpandableListAdapter {
             } else {
                 holder.imgIcon.setVisibility(View.VISIBLE);
                 holder.imgIcon.setImageResource(dir.getIcon());
-                holder.imgIcon.setColorFilter(Color.GRAY);
+                holder.imgIcon.setColorFilter(iconColor);
                 holder.noIconText.setVisibility(View.INVISIBLE);
             }
         }

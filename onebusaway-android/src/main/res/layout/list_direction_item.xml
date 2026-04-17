@@ -37,6 +37,7 @@
         android:layout_marginRight="15dp"
         android:visibility="gone"
         android:text="\u22EE"
+        android:textColor="@color/body_text_1"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"/>
 
@@ -46,7 +47,7 @@
         android:layout_height="fill_parent"
         android:layout_toRightOf="@id/imgIcon"
         android:textSize="14sp"
-        android:textColor="#000000"
+        android:textColor="@color/body_text_1"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"/>
 
